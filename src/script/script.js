@@ -123,6 +123,8 @@ function setFooterCountData() {
 
 // Function to render data on input search.
 function renderData(dataList) {
+    if(tableData.length === 0) return;
+
     let bodyElement = document.querySelector('.js-table-body');
     bodyElement.innerHTML = '';
 
