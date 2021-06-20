@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Filter App</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="container">
+        <div class="wrapper">
+            <div class="wrapper-header">
+                <h1 class="title"><span class="title__text"><span class="title__text--black">Filter</span> airports</span> <span class="title__icon"></span></h1>
+                <div class="filter">
+                    <div class="filter-type">
+                        <h2 class="filter__title">Type</h2>
+                        <ul class="filter-type__list js-checkbox-list">
+                            <li class="filter-type__list-item">
+                                <span class="checkbox-input" data-checked="false" data-label="small"></span>
+                                <span class="checkbox-label">Small</label>
+                            </li>
+                            <li class="filter-type__list-item">
+                                <span class="checkbox-input" data-checked="false" data-label="medium"></span>
+                                <span class="checkbox-label">Medium</span>
+                            </li>
+                            <li class="filter-type__list-item">
+                                <span class="checkbox-input" data-checked="false" data-label="large"></span>
+                                <span class="checkbox-label">Large</span>
+                            </li>
+                            <li class="filter-type__list-item">
+                                <span class="checkbox-input" data-checked="false" data-label="heliport"></span>
+                                <span class="checkbox-label">Heliport</span>
+                            </li>
+                            <li class="filter-type__list-item">
+                                <span class="checkbox-input" data-checked="false" data-label="closed"></span>                                
+                                <span class="checkbox-label">Closed</span>
+                            </li>
+                            <li class="filter-type__list-item">
+                                <span class="checkbox-input" data-checked="false" data-label="favorite"></span>
+                                <span class="checkbox-label">In your favorite</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="filter-search">
+                        <h2 class="filter__title">Filter by search</h2>
+                        <input class="filter-search__input js-search-input" type="text" id="search-filter" name="search-favorite" placeholder="Search" />
+                        <label for="search-filter"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>ICAO</th>
+                            <th>IATA</th>
+                            <th>Elev.</th>
+                            <th>Lat.</th>
+                            <th>Long.</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody class="js-table-body">
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div class="wrapper-footer">
+                <button class="footer__arrow footer__arrow--left js-pagination-arrow" data-direction="left"></button>
+                <span>Showing
+                    <strong>
+                        <span class="js-min-count">5</span><span> - </span><span class="js-max-count">8</span>
+                    </strong> of 
+                    <strong class="js-total-count">10,000</strong>
+                    results
+                </span>
+                <button class="footer__arrow footer__arrow--right js-pagination-arrow" data-direction="right"></button>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="src/script/script.js" defer></script>
+</body>
+</html>
