@@ -1,4 +1,4 @@
-import { DATA } from '../../data/airports.js';
+import { DATA } from '../data/airports.js';
 import { DATA_COLUMNS } from '../constants/index.js';
 import { getDataOnEvent } from '../utils/index.js';
 
