@@ -196,6 +196,7 @@ function registerEvents() {
     if(performance.navigation.type === performance.navigation.TYPE_RELOAD) {
         renderCurrentSession();
     } else {
+        console.log(DATA);
         renderInitialData(DATA);
     }
 
