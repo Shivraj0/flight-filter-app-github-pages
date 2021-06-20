@@ -14,7 +14,7 @@ function fetchData(event) {
     console.log(inputValue); // Check console for which input search is been fired.
 
     if(inputValue !== null || inputValue !== undefined) {
-        const filteredList = DATA.filter((element) => {
+        const filteredList = DATA_CLONE.filter((element) => {
             let isValid = false;
             
             for(let i = 0 ; i < dataColumnsArray.length ; i++) {
@@ -38,8 +38,7 @@ function fetchData(event) {
 
     // This is required since when user cleared the input field we need to render the initial data as it is.
     if(inputValue === '') {
-        DATA_CLONE = DATA;
-        renderData(DATA_CLONE);
+        filterDataOnCheck();
     }
 }
 
@@ -89,19 +88,27 @@ function inputCheckEvent() {
     });
 }
 
-// Add elements in table on render.
-function setTableData(dataObject) {
-    let rowElement = document.createElement('tr');
+// Function for pagination event and reset start end values.
+function paginationEvent() {
+    var paginationArrows = document.querySelectorAll('.js-pagination-arrow');
+    paginationArrows.forEach(element => element.addEventListener('click', function arrowClick(event) {
+        if(event.target.dataset.direction === 'right') {
+            if(start <= DATA_CLONE.length - 4) {
+                start += 4;
+                end += 4;
+            }
+        } else {
+            if(start !== 0) {
+                start -= 4;
+                end -= 4;
+            }
+        }
 
-    for(let i = 0 ; i < 7 ; i++) {
-        let dataElement = document.createElement('td');
-        dataElement.innerText = dataObject[DATA_COLUMNS[i]];
-        rowElement.appendChild(dataElement);
-    }
-
-    return rowElement;
+        renderData(DATA_CLONE);
+    }));
 }
 
+// Function to set values in footer content.
 function setFooterCountData() {
     
     let minCountPagination = document.querySelector('.js-min-count');
@@ -121,9 +128,21 @@ function setFooterCountData() {
     sessionStorage.setItem("total", String(DATA_CLONE.length));
 }
 
+// Add elements in table on render.
+function setTableData(dataObject) {
+    let rowElement = document.createElement('tr');
+
+    for(let i = 0 ; i < 7 ; i++) {
+        let dataElement = document.createElement('td');
+        dataElement.innerText = dataObject[DATA_COLUMNS[i]];
+        rowElement.appendChild(dataElement);
+    }
+
+    return rowElement;
+}
+
 // Function to render data on input search.
 function renderData(dataList) {
-
     let bodyElement = document.querySelector('.js-table-body');
     bodyElement.innerHTML = '';
 
@@ -149,26 +168,6 @@ function renderInitialData(tableData) {
     }
     
     setFooterCountData();
-}
-
-// Function for pagination event and reset start end values.
-function paginationEvent() {
-    var paginationArrows = document.querySelectorAll('.js-pagination-arrow');
-    paginationArrows.forEach(element => element.addEventListener('click', function arrowClick(event) {
-        if(event.target.dataset.direction === 'right') {
-            if(start <= DATA_CLONE.length - 4) {
-                start += 4;
-                end += 4;
-            }
-        } else {
-            if(start !== 0) {
-                start -= 4;
-                end -= 4;
-            }
-        }
-
-        renderData(DATA_CLONE);
-    }));
 }
 
 // Function to render current session data.
